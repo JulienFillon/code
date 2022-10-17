@@ -3,3 +3,4 @@ test -> https://www.digitalocean.com/community/tutorials/test-a-node-restful-api
 conf -> https://github.com/node-config/node-config/wiki/Configuration-Files
 doc -> https://www.section.io/engineering-education/documenting-node-js-rest-api-using-swagger/
 book api -> https://stackabuse.com/building-a-rest-api-with-node-and-express/
+db -> https://raddy.dev/blog/using-node-js-with-mysql-crud-xampp-phpmyadmin/
