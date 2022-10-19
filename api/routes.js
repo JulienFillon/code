@@ -22,6 +22,8 @@ module.exports = function(app) {
 
    app.route('/account')
        .post(controller.addAccount);
+   app.route('/getPendingTransactions')
+       .get(controller.getPendingTransactions);
    app.route('/sumup')
        .get(controller.sumupPage);
    app.route('/sumup/:userCode')

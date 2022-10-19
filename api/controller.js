@@ -9,6 +9,16 @@ var controllers = {
     addAccount: function(req, res) {
         res.send("recieved your request!"+ req.body.userCode);
     },
+    getPendingTransactions: function(req, res) {
+        var pendingTransactions = ["rolo"];
+        for(var i in data.transactions){
+            var transaction = data.transactions[i];
+            if(transaction.getStatus() == "CREATED" ){
+                pendingTransactions.push(transaction);
+            }
+        }
+        res.send(pendingTransactions);
+    },
     sumupPage: function(req, res) {
         var userCode = req.params.userCode;
         var user = data.users[userCode];
