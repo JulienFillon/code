@@ -3,12 +3,16 @@ var app = express();
 
 const routes = require('./api/routes');
 const data = require('./data');
+const utils = require("./utils");
 
 const path = require("path");
 
 const configuration = require('./config/'+process.env.NODE_ENV+'.json');
 routes(app);
 
+if(process.env.NODE_ENV == "dev" || process.env.NODE_ENV == "test"){
+    utils.fillTestData();
+}
 
 const http = require('http');
 const hostname = '127.0.0.1';
