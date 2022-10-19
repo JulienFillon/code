@@ -1,3 +1,7 @@
 to do
 
 npm install --save body-parser multer
+
+
+
+start the server in dev mode -> NODE_ENV=dev nodemon server.js

@@ -3,47 +3,41 @@ const utils = require("../utils");
 
 let Transaction = class {
 
-    #name        = null;
+    #wording     = null;
     #date        = null;
-    #debit       = null;
     #credit      = null;
     #fromAccount = null;
     #toAccount   = null;
     #status      = null;
     #code        = null;
     #currency    = null;
+    #reason      = null;
 
     constructor(code) {
-        this.#name        = null;
+        this.#wording     = null;
         this.#date        = null;
-        this.#debit       = null;
         this.#credit      = null;
         this.#fromAccount = null;
         this.#toAccount   = null;
         this.#status      = null;
         this.#currency    = null;
+        this.#reason      = null;
 
         this.#setCode(code);
     };
 
 
-    setName = function(name) {
-        this.#name = name;
+    setWording = function(wording) {
+        this.#wording = wording;
     };
-    getName = function() {
-        return this.#name;
+    getWording = function() {
+        return this.#wording;
     };
     setDate = function(date) {
         this.#date = date;
     };
     getDate = function() {
         return this.#date;
-    };
-    setDebit = function(debit) {
-        this.#debit = debit;
-    };
-    getDebit = function() {
-        return this.#debit;
     };
     setCredit = function(credit) {
         this.#credit = credit;
@@ -80,6 +74,12 @@ let Transaction = class {
     };
     getCurrency = function() {
         return this.#currency;
+    };
+    setReason = function(reason) {
+        this.#reason = reason;
+    };
+    getReason = function() {
+        return this.#reason;
     };
 };
 

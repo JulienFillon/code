@@ -26,4 +26,5 @@ module.exports = function(app) {
        .get(controller.sumupPage);
    app.route('/sumup/:userCode')
        .get(controller.sumupPage);
+   app.use(controller.errorHandler);
 };

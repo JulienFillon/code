@@ -21,11 +21,7 @@
 						"transactions" : [{
 							"name"        : "TEST transaction",
 						    "date"        : "2022/10/18",
-						    "debit"       : "0",
-						    "credit"      : "1000",
-						    "fromAccount" : null,
-						    "status"      : "DONE",
-						    "code"        : "BG34O7LL69",
+						    "credit"      : "500",
 						    "currency"    : "EUR"
 						}]
 					}
