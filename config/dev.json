@@ -1,0 +1,36 @@
+{
+	"server": {
+		"port": 3002
+	},
+	"data" : {
+		"users" : [
+			{
+				"firstName"   : "julien",
+				"lastName"    : "fillon",
+				"email"       : "julienfillon1@gmail.com",
+				"country"     : "FR",
+				"phoneNumber" : "0662452844",
+				"code"        : "A89TY8M640",
+				"accounts"    : [
+					{
+						"id"           : "1",
+						"balance"      : "1000",
+						"openingDate"  : "2022/10/18",
+						"code"         : "DB7845DF23",
+						"name"         : "FISRT",
+						"transactions" : [{
+							"name"        : "TEST transaction",
+						    "date"        : "2022/10/18",
+						    "debit"       : "0",
+						    "credit"      : "1000",
+						    "fromAccount" : null,
+						    "status"      : "DONE",
+						    "code"        : "BG34O7LL69",
+						    "currency"    : "EUR"
+						}]
+					}
+				]
+			}
+		]
+	}
+}
