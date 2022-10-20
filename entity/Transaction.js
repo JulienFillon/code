@@ -81,6 +81,20 @@ let Transaction = class {
     getReason = function() {
         return this.#reason;
     };
+
+    getData = function(){
+        return {
+            "wording"     : this.#wording,
+            "date"        : this.#date,
+            "credit"      : this.#credit,
+            "fromAccount" : this.#fromAccount ? this.#fromAccount.getCode() : null,
+            "toAccount"   : this.#toAccount ? this.#toAccount.getCode() : null,
+            "status"      : this.#status,
+            "code"        : this.#code,
+            "currency"    : this.#currency,
+            "reason"      : this.#reason
+        };
+    };
 };
 
 module.exports = Transaction;

@@ -62,6 +62,27 @@ let Account = class {
     #setCode = function(code) {
         this.#code = code ? code : utils.generateCode(10);
     };
+
+    getData = function(){
+        return {
+            "balance"     : this.#balance,
+            "openingDate" : this.#openingDate,
+            "code"        : this.#code,
+            "name"        : this.#name,
+        };
+    };
+
+    credit = function(value){
+        this.#balance = parseFloat(this.#balance) + parseFloat(value);
+    };
+    debit = function(value){
+        if(this.#balance >= parseFloat(value)) {
+            this.#balance = parseFloat(this.#balance) - parseFloat(value);
+        } else {
+            throw new Error("Insufficient Funds");
+        }
+    };
+
 }
 
 module.exports = Account;

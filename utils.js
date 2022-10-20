@@ -12,17 +12,17 @@ var utils = {
     fillTestData : function(){
         const configuration = require('./config/'+process.env.NODE_ENV+'.json');
         for(var i = 0; i<configuration.data.users.length; ++i){
-            var dataUser = configuration.data.users[i];
-            var newUser = utils.user.add(dataUser);
+            utils.user.add(configuration.data.users[i]);
+        }
 
-            for(var j =0;  j<dataUser.accounts.length; ++j){
-                var dataAccount = dataUser.accounts[j];
-                var createdAccount = utils.account.add(dataAccount, newUser);
+        for(var i =0; i<configuration.data.accounts.length; ++i){
+            var account = configuration.data.accounts[i];
+            utils.account.add(account, utils.user.get(account.user));
+        }
 
-                for(var k =0;  k<dataAccount.transactions.length; ++k){
-                    utils.transaction.add(dataAccount.transactions[k], createdAccount);
-                }
-            }
+        for(var i =0; i<configuration.data.transactions.length; ++i){
+            var transaction = configuration.data.transactions[i];
+            utils.transaction.add(transaction, utils.account.get(transaction.to), utils.account.get(transaction.from));
         }
     },
     user : {
@@ -39,6 +39,10 @@ var utils = {
             data.users[newUser.getCode()] = newUser;
 
             return newUser;
+        },
+        get : function(code){
+            let data = require("./data.js");
+            return data.users[code];
         }
     },
     account : {
@@ -54,6 +58,10 @@ var utils = {
             user.addAccount(createdAccount);
 
             return data.accounts[createdAccount.getCode()] = createdAccount;
+        },
+        get : function(code){
+            let data = require("./data.js");
+            return data.accounts[code];
         }
     },
     transaction : {
@@ -70,17 +78,17 @@ var utils = {
             createdTransaction.setStatus("CREATED");
 
             creditAccount.addTransaction(createdTransaction);
+            debitAccount.addTransaction(createdTransaction);
 
-            if(debitAccount){
-                debitAccount.addTransaction(createdTransaction);
-                // if(debitAccount.getBalance() < transactionData.credit){
-                //     console.log("la");
-                //     createdTransaction.setStatus("REFUSED");
-                //     // return next({message : 'non-sufficient funds', code : 504});
-                // }
+            return data.pendingTransactions[createdTransaction.getCode()] = createdTransaction;
+        },
+        get : function(code){
+            let data = require("./data.js");
+            var transaction = data.transactions[code];
+            if(!transaction){
+                transaction = data.pendingTransactions[code];
             }
-
-            return data.transactions[createdTransaction.getCode()] = createdTransaction;
+            return transaction;
         }
     }
 };
