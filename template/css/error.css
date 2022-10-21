@@ -1,0 +1,6 @@
+.errorMessage {
+	width: 100%;
+	text-align: center;
+	font-size: 40px;
+    line-height: calc(100VH - 174px);
+}

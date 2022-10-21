@@ -1,0 +1,26 @@
+footer {
+	height           : 60px;
+	padding          : 20px;
+	background-color : #1a242d;
+	color            : #fff;
+	position         : absolute;
+	bottom           : 0px;
+	width            : 100%;
+	box-sizing       : border-box;
+	left             : 0px;
+}
+
+footer .footerRight{
+	position : absolute;
+	right    : 20px;
+	bottom   : 20px;
+}
+
+footer .footerRight a{
+	text-decoration : none;
+	color           : #fff;
+	font-style      : italic;
+}
+footer .footerRight a:hover{
+	color : rgba(255,255,255,0.7);
+}

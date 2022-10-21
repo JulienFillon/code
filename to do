@@ -3,5 +3,7 @@ to do
 npm install --save body-parser multer
 
 npm install node-cron@3.0.0 -> service to create a cron task
+npm install jquery
 
 start the server in dev mode -> NODE_ENV=dev nodemon server.js
+start the cron task in dev mode -> NODE_ENV=dev nodemon cronTask.js

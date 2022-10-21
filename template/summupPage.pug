@@ -1,0 +1,42 @@
+extends ./main.pug
+
+block styles
+    style
+        include css/summupPage.css
+
+
+block content
+    script( type= 'text/javascript',src="https://code.jquery.com/jquery-3.6.1.min.js")
+    include js/summupPage.js
+
+
+    table(class='accountTable')
+        tr(class='accountRowHeader')
+            th BALANCE
+            th CODE
+            th NAME
+            th OPENING DATE
+        each account, index in accounts
+            tr(class='accountRow')
+                td #{account.balance}
+                td #{account.code}
+                td #{account.name}
+                td #{account.openingDate}
+            tr
+                th(colspan="4")
+                    table(class='transactionsTable')
+                        tr(class='transactionsRowHeader')
+                            th DATE
+                            th CREDIT
+                            th CURRENCY
+                            th STATUS
+                            th code
+                        each transaction, index in account.transactions
+                            tr(class='transactionsRow')
+                                td #{transaction.date}
+                                td #{transaction.credit}
+                                td #{transaction.currency}
+                                td #{transaction.status}
+                                td #{transaction.date}
+
+

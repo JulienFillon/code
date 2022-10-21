@@ -140,18 +140,25 @@ var controllers = {
     sumupPage: function(req, res) {
         var userCode = req.params.userCode;
         var user = data.users[userCode];
+
         if(user){
-            for(var i in user.getAccounts()){
-                var account = user.getAccounts()[i];
-                for(var j in account.getTransactions()){
-                    var transaction = account.getTransactions()[j];
-                    console.log(transaction.getName());
+            var accounts = []
+            var userAccounts = user.getAccounts();
+            for(var i in userAccounts){
+                var account = userAccounts[i].getData();
+                account.transactions = [];
+                var transactions = userAccounts[i].getTransactions();
+                for(var j in transactions){
+                    account.transactions.push(transactions[j].getData());
                 }
-                console.log(account.getName());
+                accounts.push(account);
             }
-            res.render('index.pug', { title: 'Hey', message: 'Hello there!' + user.getFirstName() });
+            res.render('summupPage.pug', {
+                pageTitle: user.getFirstName() + ' welcome to you summup page',
+                accounts : accounts
+            });
         } else {
-            res.render('index.pug', { title: 'Hey', message: 'Hello there!'});
+            res.render('error.pug');
         }
     },
 };

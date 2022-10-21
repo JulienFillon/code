@@ -18,6 +18,10 @@ const http = require('http');
 const hostname = '127.0.0.1';
 const port = configuration.server.port;
 
+
+// for parsing multipart/form-data
+// app.use(upload.array());
+// app.use(express.static('public'));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "template"));
 

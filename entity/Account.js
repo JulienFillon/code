@@ -66,9 +66,9 @@ let Account = class {
     getData = function(){
         return {
             "balance"     : this.#balance,
-            "openingDate" : this.#openingDate,
             "code"        : this.#code,
             "name"        : this.#name,
+            "openingDate" : this.#openingDate,
         };
     };
 

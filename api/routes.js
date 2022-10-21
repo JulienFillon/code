@@ -16,10 +16,6 @@ module.exports = function(app) {
    app.use(bodyParser.urlencoded({ extended: true }));
    //form-urlencoded
 
-   // for parsing multipart/form-data
-   app.use(upload.array());
-   app.use(express.static('public'));
-
    app.route('/account')
       .post(controller.addAccount);
    // add a security to accept only url

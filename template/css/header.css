@@ -1,0 +1,13 @@
+header {
+	height           : 60px;
+	padding          : 14px;
+	background-color : #1a242d;
+	color            : #fff;
+	width            : 100%;
+	box-sizing       : border-box;
+	left             : 0px;
+	text-align       : center;
+}
+header h1{
+	margin: 0;
+}

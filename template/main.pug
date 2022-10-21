@@ -1,0 +1,27 @@
+html
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{pageTitle}
+        style
+          include css/header.css
+          include css/main.css
+          include css/footer.css
+          block styles
+
+    body
+        header.main-header
+          h1 #{pageTitle}
+
+        block content
+
+
+        footer
+          div
+            span 2022
+            span  All rights reserved
+          div(class='footerRight')  contact
+            a(href="mailto:julienFillon1@gmail.com")  julienFillon1@gmail.com
+
+

@@ -46,6 +46,20 @@
 		    "currency"    : "EUR",
 		    "from"        : "DHFSF4D6SF",
 		    "to"          : "DB7845DF23"
+		}, {
+			"name"        : "TEST transaction",
+		    "date"        : "2022/10/18",
+		    "credit"      : "500",
+		    "currency"    : "EUR",
+		    "from"        : "DHFSF4D6SF",
+		    "to"          : "DB7845DF23"
+		}, {
+			"name"        : "TEST transaction",
+		    "date"        : "2022/10/18",
+		    "credit"      : "500",
+		    "currency"    : "EUR",
+		    "from"        : "DHFSF4D6SF",
+		    "to"          : "DB7845DF23"
 		}]
 	}
 }
