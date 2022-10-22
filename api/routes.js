@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
 
-const controller = require('./controller');
+const userController = require('./controller/userController');
+const transactionsController = require('./controller/transactionController');
+const accountController = require('./controller/accountController');
 
 module.exports = function(app) {
 
@@ -17,24 +19,24 @@ module.exports = function(app) {
    //form-urlencoded
 
    app.route('/account')
-      .post(controller.addAccount);
-   // add a security to accept only url
+      .post(accountController.addAccount);
    app.route('/getAccount')
-      .get(controller.getAccount);
+      .get(accountController.getAccount);
    app.route('/debitAccountBalance')
-      .post(controller.debitAccountBalance);
+      .post(accountController.debitAccountBalance);
    app.route('/creditAccountBalance')
-      .post(controller.creditAccountBalance);
+      .post(accountController.creditAccountBalance);
 
    app.route('/getPendingTransactions')
-      .get(controller.getPendingTransactions);
+      .get(transactionsController.getPendingTransactions);
    app.route('/updateTransaction')
-      .post(controller.updateTransaction);
+      .post(transactionsController.updateTransaction);
 
-
+   app.route('/getUserInfos')
+      .get(userController.getUserInfo);
    app.route('/sumup')
-      .get(controller.sumupPage);
+      .get(userController.sumupPage);
    app.route('/sumup/:userCode')
-      .get(controller.sumupPage);
-   app.use(controller.errorHandler);
+      .get(userController.sumupPage);
+   app.use(userController.errorHandler);
 };

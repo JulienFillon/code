@@ -1,3 +1,10 @@
+/*
+    This file is the transaction handler service
+    It is working with a cron task pulling the pending transactions (every 5s in this version)
+    It is also in charge for checking if the transaction is OK
+    It update the transactions and the link accounts
+*/
+
 var cron = require('node-cron');
 const http = require('http');
 
@@ -80,6 +87,7 @@ let getPendingTransactions = function(){
 
 
 let handlePendingTransaction = function(pendingTransactionsCode){
+    // I should get here an authorisation token to continue de process -> no time to do it
     for(var i = 0; i<pendingTransactionsCode.length; ++i ){
 
         var firstCallback = function(pendingTransaction, toAccount){

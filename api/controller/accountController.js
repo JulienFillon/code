@@ -1,12 +1,8 @@
 'use strict';
-var user        = require("../entity/User");
-var data        = require("../data.js");
-var utils        = require("../utils.js");
-var transaction = require("../entity/Transaction");
-var account     = require("../entity/Account");
-let fs = require('fs');
+var data  = require("../../data.js");
+var utils = require("../../utils.js");
 
-var controllers = {
+var accountController = {
     errorHandler : function(err, req, res, next) {
         if (res.headersSent) {
             return next(err);
@@ -15,7 +11,6 @@ var controllers = {
     },
     addAccount: function(req, res, next) {
         try{
-            // console.log(req);
             var userCode = req.body.userCode;
             var initialCredit = req.body.initialCredit;
             var initialAccountCode = req.body.initialAccountCode;
@@ -36,19 +31,11 @@ var controllers = {
                 return next({message : 'initialCredit need to be a positive number', code : 503});
             }
 
-            let accounts = user.getAccounts();
-            let debitAccount = null;
-            if(initialAccountCode){
-                debitAccount = user.getAccount(initialAccountCode);
-                if(!debitAccount){
-                    return next({message : 'can not find the origin account', code : 503});
-                }
-            } else {
-                for(var i in accounts){
-                    debitAccount = accounts[i];
-                    break;
-                }
+            let debitAccount = data.accounts[initialAccountCode];
+            if(!debitAccount){
+                return next({message : 'can not find the origin account', code : 503});
             }
+
             let accountData = {};
             let createdAccount = utils.account.add(accountData , user);
 
@@ -109,58 +96,6 @@ var controllers = {
             return next({message : err.message, code : 500});
         }
     },
-    getPendingTransactions: function(req, res, next) {
-        var pendingTransactions = [];
-        for(var i in data.pendingTransactions){
-            pendingTransactions.push(data.pendingTransactions[i].getData());
-        }
-        res.send(pendingTransactions);
-    },
-     updateTransaction: function(req, res, next) {
-        var transactionCode = req.body.code;
-        var status = req.body.status;
-        var message = req.body.message;
-
-        var transaction = utils.transaction.get(transactionCode);
-
-        if(transaction){
-            if(data.pendingTransactions[transactionCode]){
-                data.transactions[transactionCode] = transaction;
-                delete data.pendingTransactions[transactionCode];
-            }
-
-            transaction.setReason(message);
-            transaction.setStatus(status);
-            res.send(JSON.stringify({"result" : "OK"}));
-        } else {
-            return next({message : 'transaction not found', code : 500});
-        }
-    },
-    sumupPage: function(req, res) {
-        var userCode = req.params.userCode;
-        var user = data.users[userCode];
-
-        if(user){
-            var accounts = []
-            var userAccounts = user.getAccounts();
-            for(var i in userAccounts){
-                var account = userAccounts[i].getData();
-                account.transactions = [];
-                var transactions = userAccounts[i].getTransactions();
-                for(var j in transactions){
-                    account.transactions.push(transactions[j].getData());
-                }
-                accounts.push(account);
-            }
-            res.render('summupPage.pug', {
-                pageTitle : ' User info sumup page',
-                accounts  : accounts,
-                user      : user.getData(),
-            });
-        } else {
-            res.render('error.pug');
-        }
-    },
 };
 
-module.exports = controllers;
+module.exports = accountController;
