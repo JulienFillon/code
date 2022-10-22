@@ -81,10 +81,9 @@ let getPendingTransactions = function(){
 
 let handlePendingTransaction = function(pendingTransactionsCode){
     for(var i = 0; i<pendingTransactionsCode.length; ++i ){
-        var pendingTransaction = pendingTransactionsCode[i];
-        let fromAccount = null;
-        var firstCallback = function(toAccount){
-            var secondCallback = function(fromAccount){
+
+        var firstCallback = function(pendingTransaction, toAccount){
+            var secondCallback = function(pendingTransaction, fromAccount){
 
                 if(parseFloat(fromAccount.balance) < parseFloat(pendingTransaction.credit)){
                     updateTransaction(pendingTransaction.code, "FAILED", "Insufficient Funds");
@@ -98,9 +97,9 @@ let handlePendingTransaction = function(pendingTransactionsCode){
                     }.bind(this, fromAccount.code, parseFloat(pendingTransaction.credit)));
                 }
             };
-            fromAccount = getAccount(pendingTransaction.fromAccount, secondCallback);
+            fromAccount = getAccount(pendingTransaction.fromAccount, secondCallback.bind(this, pendingTransaction));
         };
-        let toAccount = getAccount(pendingTransaction.toAccount, firstCallback);
+        let toAccount = getAccount(pendingTransactionsCode[i].toAccount, firstCallback.bind(this, pendingTransactionsCode[i]) );
     }
 };
 

@@ -1,0 +1,149 @@
+
+table{
+    border-spacing: 0px;
+}
+table tr {
+	height : 30px;
+}
+
+.userSumupMainContainer{
+	width: 90%;
+    margin: 25px auto;
+    display: block;
+}
+.userInfos{
+	width: 100%;
+    display: block;
+}
+.userInfos div{
+	margin: 10px auto;
+}
+.accountTable{
+    border-spacing: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.accountTable .accountRowHeader{
+	background-color : #1a242d;
+	color            : #fff;
+	height           : 50px;
+}
+.accountTable .accountRow{
+	cursor: pointer;
+}
+.accountTable .accountRow:hover{
+	background-color : rgba(0,100,0,0.5);
+}
+
+.validButton,
+.openNewAccountButton{
+	background-color : #1a242d;
+	color            : #fff;
+	cursor           : pointer;
+	border-radius    : 6px;
+	border           : 1px solid #1a242d;
+	display          : inline-block;
+	padding          : 10px;
+	margin           : 20px auto;
+}
+.validButton{
+	margin-bottom : 0px;
+}
+
+.validButton:hover,
+.openNewAccountButton:hover{
+	background-color : #fff;
+	color            : #1a242d;
+}
+
+
+.hiddenInfo{
+	display: none;
+}
+
+
+.transactionsTable{
+    border-spacing: 0px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    max-height: 0px;
+    transition: max-height 0.15s ease-out;
+}
+.transactionsTable.visible{
+    display: table;
+    max-height: 100VH;
+    transition: max-height 0.25s ease-in;
+}
+
+tr.accountRow:nth-child(odd),
+.transactionsTable tr:nth-child(odd){
+	background-color: #D3D3D3;
+}
+
+.transactionsTable tr:hover{
+	background-color : rgba(0,100,0,0.5);
+}
+.transactionsTable tr.transactionsRowHeader{
+	background-color : #1a242d;
+	color            : #fff;
+	height           : 50px;
+}
+.transactionsTable .debit{
+	color: #ff0000;
+}
+.transactionsTable .credit{
+	color: #00ff00;
+}
+
+
+
+
+.createNewAccountOverlay{
+	position         : fixed;
+	width            : 100%;
+	height           : 100%;
+	z-index          : 10;
+	background-color : rgba(0,0,0,0.5);
+	display          : none;
+}
+
+.createNewAccountOverlay .popupContainer{
+	position         : relative;
+	width            : 600px;
+	background-color : #ffffff;
+	border           : 1px solid #1a242d;
+	border-radius    : 6px;
+	top              : 200px;
+	left             : calc(50% - 300px);
+	padding          : 15px;
+	box-sizing       : border-box;
+}
+.createNewAccountOverlay .popupContainer .closePopupButton:hover{
+	font-weight: bold;
+}
+.createNewAccountOverlay .popupContainer .closePopupButton{
+	color     : #1a242d;
+	position  : absolute;
+	right     : 8px;
+	top       : 6px;
+	cursor    : pointer;
+	font-size : 20px;
+}
+
+.createNewAccountOverlay .popupContainer .slider{
+	width: 330px;
+	margin: 0px 10px;
+	vertical-align: middle;
+}
+.createNewAccountOverlay .popupContainer .sliderNumber{
+	width: 50px;
+	text-align: center;
+
+}
+.createNewAccountOverlay .popupContainer .accountSelector{
+	margin-right: 10px;
+	margin-top : 20px;
+}

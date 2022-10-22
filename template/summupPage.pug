@@ -2,41 +2,80 @@ extends ./main.pug
 
 block styles
     style
-        include css/summupPage.css
+        include css/sumupPage.css
 
 
 block content
     script( type= 'text/javascript',src="https://code.jquery.com/jquery-3.6.1.min.js")
-    include js/summupPage.js
+    include js/sumupPage.js
 
 
-    table(class='accountTable')
-        tr(class='accountRowHeader')
-            th BALANCE
-            th CODE
-            th NAME
-            th OPENING DATE
-        each account, index in accounts
-            tr(class='accountRow')
-                td #{account.balance}
-                td #{account.code}
-                td #{account.name}
-                td #{account.openingDate}
-            tr
-                th(colspan="4")
-                    table(class='transactionsTable')
-                        tr(class='transactionsRowHeader')
-                            th DATE
-                            th CREDIT
-                            th CURRENCY
-                            th STATUS
-                            th code
-                        each transaction, index in account.transactions
-                            tr(class='transactionsRow')
-                                td #{transaction.date}
-                                td #{transaction.credit}
-                                td #{transaction.currency}
-                                td #{transaction.status}
-                                td #{transaction.date}
+    div(class='createNewAccountOverlay')
+        div(class='popupContainer')
+            div(class='closePopupButton') ✕
+
+            div(class='amountToTransferContainer')
+                span(class='info') Amount to transfert :
+                input(id="myRange" class='slider' type='range' min='0' max='100' value='0')
+                input(id="myRangeNumber" class='sliderNumber' type='text' value='0')
+
+            div(class='accountSelector')
+                span(class='info') Account to transfert money from :
+                select(name='account' id='account')
+                    option(selected) Select an account
+                    each account, index in accounts
+                        option(value=account.code balance=account.balance) #{account.name} (#{account.balance} #{account.currency})
+
+            div(class='validButton') Valid
+
+    div(class='userSumupMainContainer')
+        div(class='userInfos')
+            div
+                span(class='info') Name :
+                span(class='value')  #{user.firstName} #{user.lastName}
+            div
+                span(class='info') Email :
+                span(class='value')  #{user.email}
+            div
+                span(class='info') Phone number :
+                span(class='value')  #{user.phoneNumber}
+            div(class="hiddenInfo userCode")
+                span(class='info') Code :
+                span(class='value') #{user.code}
+
+        div(class='openNewAccountButton') New Account
+
+        table(class='accountTable')
+            tr(class='accountRowHeader')
+                th BALANCE
+                th CODE
+                th NAME
+                th OPENING DATE
+            each account, index in accounts
+                tr(class='accountRow' code=account.code)
+                    td(code=account.code) #{account.balance}
+                    td(code=account.code) #{account.code}
+                    td(code=account.code) #{account.name}
+                    td(code=account.code) #{account.openingDate}
+                tr(class='transactionRow' code=account.code)
+                    th(colspan="4")
+                        table(class='transactionsTable')
+                            tr(class='transactionsRowHeader')
+                                th DATE
+                                th CREDIT
+                                th DEBIT
+                                th CURRENCY
+                                th STATUS
+                            each transaction, index in account.transactions
+                                tr(class='transactionsRow')
+                                    td #{transaction.date}
+                                    if transaction.fromAccount == account.code
+                                        td 0
+                                        td(class='debit') #{transaction.credit}
+                                    else
+                                        td(class='credit') #{transaction.credit}
+                                        td 0
+                                    td #{transaction.currency}
+                                    td #{transaction.status}
 
 

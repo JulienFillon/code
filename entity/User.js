@@ -69,6 +69,18 @@ let User = class {
     #setCode = function(code) {
         this.#code = code ? code : utils.generateCode(10);
     };
+
+    getData = function(){
+        return {
+            "firstName"   : this.#firstName,
+            "lastName"    : this.#lastName,
+            "code"        : this.#code,
+            "email"       : this.#email,
+            "country"     : this.#country,
+            "phoneNumber" : this.#phoneNumber,
+            "accounts"    : this.#accounts
+        }
+    };
 };
 
 module.exports = User;

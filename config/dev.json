@@ -28,7 +28,8 @@
 				"openingDate"  : "2022/10/18",
 				"code"         : "DB7845DF23",
 				"name"         : "FISRT",
-				"user"         : "7E5FG42BH3"
+				"user"         : "7E5FG42BH3",
+		    	"currency"     : "EUR"
 			},
 			{
 				"id"           : "1",
@@ -36,23 +37,17 @@
 				"openingDate"  : "2022/10/18",
 				"code"         : "DHFSF4D6SF",
 				"name"         : "OTHER",
-				"user"         : "A89TY8M640"
+				"user"         : "A89TY8M640",
+		    	"currency"     : "EUR"
 			}
 		],
 		"transactions" : [{
 			"name"        : "TEST transaction",
 		    "date"        : "2022/10/18",
-		    "credit"      : "500",
+		    "credit"      : "200",
 		    "currency"    : "EUR",
-		    "from"        : "DHFSF4D6SF",
-		    "to"          : "DB7845DF23"
-		}, {
-			"name"        : "TEST transaction",
-		    "date"        : "2022/10/18",
-		    "credit"      : "500",
-		    "currency"    : "EUR",
-		    "from"        : "DHFSF4D6SF",
-		    "to"          : "DB7845DF23"
+		    "from"        : "DB7845DF23",
+		    "to"          : "DHFSF4D6SF"
 		}, {
 			"name"        : "TEST transaction",
 		    "date"        : "2022/10/18",

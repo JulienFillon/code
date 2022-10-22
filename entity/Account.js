@@ -10,6 +10,7 @@ let Account = class {
     #openingDate = null;
     #code = null;
     #name = null;
+    #currency = null;
 
     constructor(code) {
         this.#users        = {};
@@ -17,6 +18,7 @@ let Account = class {
         this.#transactions = {};
         this.#openingDate  = null;
         this.#name         = null;
+        this.#currency     = null;
 
         this.#setCode(code);
     };
@@ -63,12 +65,20 @@ let Account = class {
         this.#code = code ? code : utils.generateCode(10);
     };
 
+    getCurrency = function() {
+        return this.#currency;
+    };
+    setCurrency = function(currency) {
+        this.#currency = currency;
+    };
+
     getData = function(){
         return {
             "balance"     : this.#balance,
             "code"        : this.#code,
             "name"        : this.#name,
             "openingDate" : this.#openingDate,
+            "currency"    : this.#currency
         };
     };
 

@@ -15,6 +15,7 @@ var controllers = {
     },
     addAccount: function(req, res, next) {
         try{
+            // console.log(req);
             var userCode = req.body.userCode;
             var initialCredit = req.body.initialCredit;
             var initialAccountCode = req.body.initialAccountCode;
@@ -85,7 +86,6 @@ var controllers = {
 
             if(account){
                 account.debit(value);
-                console.log(account.getBalance());
                 res.send(JSON.stringify({"result" : "OK"}));
             } else {
                 return next({message : 'account not found', code : 500});
@@ -101,7 +101,6 @@ var controllers = {
             var account = utils.account.get(accountCode);
             if(account){
                 account.credit(value);
-                console.log(account.getBalance());
                 res.send(JSON.stringify({"result" : "OK"}));
             } else {
                 return next({message : 'account not found', code : 500});
@@ -154,8 +153,9 @@ var controllers = {
                 accounts.push(account);
             }
             res.render('summupPage.pug', {
-                pageTitle: user.getFirstName() + ' welcome to you summup page',
-                accounts : accounts
+                pageTitle : ' User info sumup page',
+                accounts  : accounts,
+                user      : user.getData(),
             });
         } else {
             res.render('error.pug');

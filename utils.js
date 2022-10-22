@@ -55,6 +55,7 @@ var utils = {
             createdAccount.setBalance(accountData.balance ? accountData.balance : 0);
             createdAccount.setOpeningDate(new Date().toLocaleDateString());
             createdAccount.setName(accountData.name ? accountData.name : "DEFAULT");
+            createdAccount.setCurrency(accountData.currency ? accountData.currency : "EUR");
             user.addAccount(createdAccount);
 
             return data.accounts[createdAccount.getCode()] = createdAccount;
@@ -76,6 +77,7 @@ var utils = {
             createdTransaction.setFromAccount(debitAccount);
             createdTransaction.setToAccount(creditAccount);
             createdTransaction.setStatus("CREATED");
+            createdTransaction.setCurrency(transactionData.currency);
 
             creditAccount.addTransaction(createdTransaction);
             debitAccount.addTransaction(createdTransaction);
