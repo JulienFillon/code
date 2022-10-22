@@ -1,0 +1,38 @@
+# Project Title
+
+This project is exposing two api functions :
+	- creating a new account from an existing one
+	- processing transactions
+
+We also offer a nice web interface displaying the user data (user infos, accounts and transaction)
+
+---
+## Requirements
+
+For development, you will only Node.js and a node global package.
+
+also install the following :
+npm install --save body-parser multer
+npm install node-cron@3.0.0 -> service to create a cron task
+npm install --save cors
+
+## Configure app
+
+Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
+
+- A setting;
+- Another setting;
+- One more setting;
+
+## Setting up project initial data
+
+Feel free to edit the file config/dev.json in order to add more users/accounts/transactions
+
+## Running the project in dev mode
+
+NODE_ENV=dev nodemon server.js
+NODE_ENV=dev nodemon cronTask.js
+
+
+## To access the user informations interface follow this link : http://127.0.0.1:3002/sumup/A89TY8M640
+This is the interface for the User "Julien Fillon"
