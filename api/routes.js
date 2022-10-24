@@ -39,4 +39,9 @@ module.exports = function(app) {
    app.route('/sumup/:userCode')
       .get(userController.sumupPage);
    app.use(userController.errorHandler);
+
+
+   app.get("*", (req, res) => {
+      res.render('error.pug');
+   });
 };

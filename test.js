@@ -1,3 +1,8 @@
+/*
+    This is the file handling the tests
+    I used Jest to do it
+    It allow to test every single api endpoints
+*/
 const server = require('./server.js');
 const supertest = require('supertest');
 const requestWithSupertest = supertest(server);

@@ -59,7 +59,7 @@ var userController = {
                     }
                     accounts.push(account);
                 }
-                res.render('summupPage.pug', {
+                res.render('sumupPage.pug', {
                     pageTitle : ' User info sumup page',
                     accounts  : accounts,
                     user      : user.getData(),

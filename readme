@@ -1,15 +1,63 @@
-# Project Title
+-----------------------------------
+-----------------------------------
+Back-end coding assignment
+-----------------------------------
+-----------------------------------
 
 This project is exposing two api functions :
 	- creating a new account from an existing one
 	- processing transactions
 
-We also offer a nice web interface displaying the user data (user infos, accounts and transaction)
+It also offer a nice web interface displaying the user data (user infos, accounts and transaction)
+It also can create new accounts and see the transaction status evolution
 
----
-## Requirements
 
-For development, you will only Node.js and a node global package.
+-----------------------------------
+-----------------------------------
+Here is the structure of my project
+-----------------------------------
+-----------------------------------
+
+|-- server.js   -> main file of my node.js server
+|-- cronTask.js -> Service consumming the pending transactions
+|-- test.js     -> File handling the tests
+|-- utils.js    -> File to handling data
+|-- data.js     -> File hosting data
+|-- BH Requests.postman_collection.json -> Postman requests
+|-- config
+	|-- test.json -> File hosting the initial project data for the test env
+	|-- dev.json  -> File hosting the initial project data for the dev env
+	|-- prod.json -> File hosting the initial project data for the prod env
+|-- entity
+	|-- Account.js     -> File defining the account attributes and functions
+	|-- User.js        -> File defining the user attributes and functions
+	|-- Transaction.js -> File defining the transaction attributes and functions
+|-- template
+	|-- main.pug      -> Main file template, defining header and footer
+	|-- sumupPage.pug -> File used to render the sumup page (extending main.pug)
+	|-- error.pug     -> error file template
+	|-- js
+		|-- sumupPage.js -> client side sumup page intelligence
+	|-- css
+		|-- sumupPage.css -> sumup page style
+		|-- error.css     -> error page style
+		|-- main.css      -> main style
+		|-- header.css    -> header style
+		|-- footer.css    -> footer style
+|-- api
+	|-- route.js -> file defining all the available routes
+	|-- controller
+		|-- userController.js        -> file defining the user functions
+		|-- transactionController.js -> file defining the transaction functions
+		|-- accountController.js     -> file defining the account functions
+
+-----------------------------------
+-----------------------------------
+Requirements
+-----------------------------------
+-----------------------------------
+
+You will only Node.js and a node global package.
 
 also install the following :
 npm install --save body-parser multer
@@ -21,27 +69,47 @@ npm install supertest --save-dev
 npm install cross-env --save-dev
 
 
-## Configure app
-
-Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
-
-- A setting;
-- Another setting;
-- One more setting;
-
-## Setting up project initial data
-
+-----------------------------------
+-----------------------------------
+Setting up project initial data
+-----------------------------------
+-----------------------------------
 Feel free to edit the file config/dev.json in order to add more users/accounts/transactions
 
-## Running the project in dev mode
 
+-----------------------------------
+-----------------------------------
+Running the project in dev mode
+-----------------------------------
+-----------------------------------
 NODE_ENV=dev nodemon server.js
 NODE_ENV=dev nodemon cronTask.js
 
 
-## To access the user informations interface follow this link : http://127.0.0.1:3002/sumup/A89TY8M640
-This is the interface for the User "Julien Fillon"
+-----------------------------------
+-----------------------------------
+DETAILS
+-----------------------------------
+-----------------------------------
+To access the user informations interface follow this link :
+	- http://127.0.0.1:3002/sumup/A89TY8M640 (User "Julien Fillon")
+	- http://127.0.0.1:3002/sumup/7E5FG42BH3 (User "Pascal Fillon", yes this is my dad)
 
 
 ## Running the test
-npm test
+All the test are define in the test.js file
+to run it simply exectue "npm test" in your terminal (no need to have your server running)
+You also can find requests for postman in the file -> BH Requests.postman_collection.json
+
+
+-----------------------------------
+-----------------------------------
+What can I have done more
+-----------------------------------
+-----------------------------------
+- adding security between the crontask and the node js server (using a secret token)
+- adding a link between users like beneficiary to only accept transaction between this kind of user
+- adding defined transaction status (Adding test on it)
+- a better UI
+- a documentation for the api end point
+- a better error handler with log and email alert
