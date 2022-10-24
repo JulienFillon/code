@@ -95,8 +95,11 @@ To access the user informations interface follow this link :
 	- http://127.0.0.1:3002/sumup/A89TY8M640 (User "Julien Fillon")
 	- http://127.0.0.1:3002/sumup/7E5FG42BH3 (User "Pascal Fillon", yes this is my dad)
 
-
-## Running the test
+-----------------------------------
+-----------------------------------
+ Running the test
+-----------------------------------
+-----------------------------------
 All the test are define in the test.js file
 to run it simply exectue "npm test" in your terminal (no need to have your server running)
 You also can find requests for postman in the file -> BH Requests.postman_collection.json
