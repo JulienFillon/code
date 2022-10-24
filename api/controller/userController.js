@@ -22,25 +22,22 @@ var userController = {
                 return next({message : 'user not found', code : 502});
             }
 
-            if(user){
-                var accounts = []
-                var userAccounts = user.getAccounts();
-                for(var i in userAccounts){
-                    var account = userAccounts[i].getData();
-                    account.transactions = [];
-                    var transactions = userAccounts[i].getTransactions();
-                    for(var j in transactions){
-                        account.transactions.push(transactions[j].getData());
-                    }
-                    accounts.push(account);
+            var accounts = []
+            var userAccounts = user.getAccounts();
+            for(var i in userAccounts){
+                var account = userAccounts[i].getData();
+                account.transactions = [];
+                var transactions = userAccounts[i].getTransactions();
+                for(var j in transactions){
+                    account.transactions.push(transactions[j].getData());
                 }
-                res.send({
-                    "accounts"  : accounts,
-                    "user"      : user.getData(),
-                });
-            } else {
-                res.send({"result" : "KO"});
+                accounts.push(account);
             }
+            res.send({
+                "accounts"  : accounts,
+                "user"      : user.getData(),
+            });
+
         } catch(err){
             return next({message : err.message, code : 500});
         }

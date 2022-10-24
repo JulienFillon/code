@@ -1,5 +1,60 @@
 {
 	"server": {
 		"port": 3000
+	},
+	"data" : {
+		"users" : [
+			{
+				"firstName"   : "Pascal",
+				"lastName"    : "fillon",
+				"email"       : "pascalFillon@gmail.com",
+				"country"     : "FR",
+				"phoneNumber" : "",
+				"code"        : "7E5FG42BH3"
+			},
+			{
+				"firstName"   : "julien",
+				"lastName"    : "fillon",
+				"email"       : "julienfillon1@gmail.com",
+				"country"     : "FR",
+				"phoneNumber" : "0662452844",
+				"code"        : "A89TY8M640"
+			}
+		],
+		"accounts" : [
+			{
+				"id"           : "2",
+				"balance"      : "1000",
+				"openingDate"  : "2022/10/18",
+				"code"         : "DB7845DF23",
+				"name"         : "FISRT",
+				"user"         : "7E5FG42BH3",
+		    	"currency"     : "EUR"
+			},
+			{
+				"id"           : "1",
+				"balance"      : "1000",
+				"openingDate"  : "2022/10/18",
+				"code"         : "DHFSF4D6SF",
+				"name"         : "OTHER",
+				"user"         : "A89TY8M640",
+		    	"currency"     : "EUR"
+			}
+		],
+		"transactions" : [{
+			"name"        : "TEST transaction",
+		    "date"        : "2022/10/18",
+		    "credit"      : "200",
+		    "currency"    : "EUR",
+		    "from"        : "DB7845DF23",
+		    "to"          : "DHFSF4D6SF"
+		}, {
+			"name"        : "TEST transaction",
+		    "date"        : "2022/10/18",
+		    "credit"      : "500",
+		    "currency"    : "EUR",
+		    "from"        : "DHFSF4D6SF",
+		    "to"          : "DB7845DF23"
+		}]
 	}
 }

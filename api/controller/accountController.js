@@ -19,34 +19,34 @@ var accountController = {
                 return next({message : 'missing userCode data', code : 500});
             }
             if(!initialCredit){
-                return next({message : 'missing initialCredit data', code : 501});
+                return next({message : 'missing initialCredit data', code : 500});
+            }
+            if(!initialAccountCode){
+                return next({message : 'missing initialAccountCode data', code : 500});
             }
 
             let user = data.users[userCode];
             if(!user){
-                return next({message : 'user not found', code : 502});
+                return next({message : 'user not found', code : 500});
             }
 
-            if(initialCredit < 0){
-                return next({message : 'initialCredit need to be a positive number', code : 503});
+            if(initialCredit < 0 || isNaN(initialCredit)){
+                return next({message : 'initialCredit need to be a positive number', code : 500});
             }
 
             let debitAccount = data.accounts[initialAccountCode];
             if(!debitAccount){
-                return next({message : 'can not find the origin account', code : 503});
+                return next({message : 'can not find the origin account', code : 500});
             }
 
             let accountData = {};
             let createdAccount = utils.account.add(accountData , user);
+            let transactionData = {
+                credit : initialCredit
+            };
+            utils.transaction.add(transactionData, createdAccount, debitAccount);
 
-            if(initialCredit > 0){
-                let transactionData = {
-                    credit : initialCredit
-                };
-                utils.transaction.add(transactionData, createdAccount, debitAccount);
-            }
-
-            res.send("ok");
+            res.send(JSON.stringify({"result" : "OK"}));
         } catch(err){
             return next({message : err.message, code : 500});
         }
@@ -54,6 +54,10 @@ var accountController = {
     getAccount : function(req, res, next) {
         try{
             var accountCode = req.body.code;
+            if(!accountCode){
+                return next({message : 'missing code data', code : 500});
+            }
+
             var account = utils.account.get(accountCode);
 
             if(account){
@@ -68,7 +72,15 @@ var accountController = {
     debitAccountBalance: function(req, res, next) {
         try{
             var accountCode = req.body.code;
+
+            if(!accountCode){
+                return next({message : 'missing code data', code : 500});
+            }
             var value = req.body.value;
+
+            if(!value){
+                return next({message : 'missing value data', code : 500});
+            }
             var account = utils.account.get(accountCode);
 
             if(account){
@@ -84,7 +96,16 @@ var accountController = {
     creditAccountBalance: function(req, res, next) {
         try{
             var accountCode = req.body.code;
+
+            if(!accountCode){
+                return next({message : 'missing code data', code : 500});
+            }
+
             var value = req.body.value;
+            if(!value){
+                return next({message : 'missing value data', code : 500});
+            }
+
             var account = utils.account.get(accountCode);
             if(account){
                 account.credit(value);

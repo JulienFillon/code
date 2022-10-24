@@ -19,13 +19,16 @@ const hostname = '127.0.0.1';
 const port = configuration.server.port;
 
 
-// for parsing multipart/form-data
-// app.use(upload.array());
-// app.use(express.static('public'));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "template"));
 
 app.listen(port, () => {
- console.log("Server running on port "+port+" visit :  http://"+hostname+":"+port+"/sumup");
+    if(process.env.NODE_ENV == "dev" || process.env.NODE_ENV == "test"){
+        console.log("Server running on port "+port+" visit :  http://"+hostname+":"+port+"/sumup/A89TY8M640");
+    } else {
+        console.log("Server running on port "+port+" visit :  http://"+hostname+":"+port+"/sumup");
+    }
 });
 
+
+module.exports = app;

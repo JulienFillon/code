@@ -11,7 +11,7 @@ const http = require('http');
 let execRequest = function(data, path, method, callback, errorCallback){
     const options = {
       hostname : '127.0.0.1',
-      port     : 3002,
+      port     : 3000,
       path     : path,
       method   : method,
       headers  : {

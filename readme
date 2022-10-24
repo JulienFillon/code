@@ -16,6 +16,11 @@ npm install --save body-parser multer
 npm install node-cron@3.0.0 -> service to create a cron task
 npm install --save cors
 
+npm install jest --save-dev
+npm install supertest --save-dev
+npm install cross-env --save-dev
+
+
 ## Configure app
 
 Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
@@ -36,3 +41,7 @@ NODE_ENV=dev nodemon cronTask.js
 
 ## To access the user informations interface follow this link : http://127.0.0.1:3002/sumup/A89TY8M640
 This is the interface for the User "Julien Fillon"
+
+
+## Running the test
+npm test

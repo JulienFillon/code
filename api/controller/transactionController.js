@@ -26,6 +26,14 @@ var transactionsController = {
             var status = req.body.status;
             var message = req.body.message;
 
+
+            if(!transactionCode){
+                return next({message : 'missing code data', code : 500});
+            }
+            if(!status){
+                return next({message : 'missing status data', code : 500});
+            }
+
             var transaction = utils.transaction.get(transactionCode);
 
             if(transaction){

@@ -7,5 +7,19 @@
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.0",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.2.1",
+    "supertest": "^6.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000"
   }
 }

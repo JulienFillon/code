@@ -83,9 +83,17 @@ let Account = class {
     };
 
     credit = function(value){
+        if(isNaN(value)){
+            throw new Error("value is not a number");
+        }
+
         this.#balance = parseFloat(this.#balance) + parseFloat(value);
     };
     debit = function(value){
+        if(isNaN(value)){
+            throw new Error("value is not a number");
+        }
+
         if(this.#balance >= parseFloat(value)) {
             this.#balance = parseFloat(this.#balance) - parseFloat(value);
         } else {
